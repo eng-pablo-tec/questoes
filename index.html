@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz por Matéria</title>
+</head>
+<body>
+  <h1>Selecione a matéria</h1>
+  <select id="materia">
+    <option value="">-- Escolha uma matéria --</option>
+  </select>
+
+  <div id="questoes"></div>
+
+  <script>
+    const selectMateria = document.getElementById('materia');
+    const divQuestoes = document.getElementById('questoes');
+
+    fetch('https://seu-usuario.github.io/seu-repo/questoes.json')
+      .then(response => response.json())
+      .then(data => {
+        // Preenche o select com as matérias
+        Object.keys(data).forEach(materia => {
+          const option = document.createElement('option');
+          option.value = materia;
+          option.textContent = materia;
+          selectMateria.appendChild(option);
+        });
+
+        selectMateria.addEventListener('change', () => {
+          const materiaSelecionada = selectMateria.value;
+          const questoes = data[materiaSelecionada] || [];
+
+          divQuestoes.innerHTML = questoes.map((q, i) => `
+            <div style="margin-bottom: 20px;">
+              <strong>Questão ${i + 1}</strong><br>
+              <em>${q.contexto}</em><br>
+              <p>${q.pergunta}</p>
+              <ul>
+                ${q.alternativas.map(alt => `<li>${alt}</li>`).join('')}
+              </ul>
+              <strong>Resposta correta:</strong> ${q.resposta}
+            </div>
+          `).join('');
+        });
+      })
+      .catch(err => {
+        divQuestoes.innerHTML = "Erro ao carregar as questões.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
