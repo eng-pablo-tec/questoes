@@ -1,0 +1,130 @@
+{
+  "logica de programação": [
+    {
+      "contexto": "Uso de variáveis e controle de fluxo.",
+      "pergunta": "Qual estrutura é usada para tomar decisões em um programa?",
+      "alternativas": ["for", "if", "switch", "while"],
+      "resposta": "if"
+    },
+    {
+      "contexto": "Entendendo loops.",
+      "pergunta": "Qual laço é mais indicado quando não sabemos o número de repetições?",
+      "alternativas": ["for", "while", "do...while", "foreach"],
+      "resposta": "while"
+    },
+    {
+      "contexto": "Tipos de dados.",
+      "pergunta": "Qual tipo de dado representa verdadeiro ou falso?",
+      "alternativas": ["int", "string", "boolean", "char"],
+      "resposta": "boolean"
+    },
+    {
+      "contexto": "Funções em lógica.",
+      "pergunta": "O que uma função pode retornar?",
+      "alternativas": ["Nada", "Um valor", "Várias funções", "Somente números"],
+      "resposta": "Um valor"
+    },
+    {
+      "contexto": "Operadores lógicos.",
+      "pergunta": "Qual operador representa 'E' lógico?",
+      "alternativas": ["||", "!", "&&", "=="],
+      "resposta": "&&"
+    }
+  ],
+  "backend": [
+    {
+      "contexto": "Rotas em APIs.",
+      "pergunta": "Qual método HTTP é usado para criar um novo recurso?",
+      "alternativas": ["GET", "POST", "PUT", "DELETE"],
+      "resposta": "POST"
+    },
+    {
+      "contexto": "HTTP Status Codes.",
+      "pergunta": "O que o código 404 representa?",
+      "alternativas": ["Sucesso", "Recurso não encontrado", "Erro do servidor", "Redirecionamento"],
+      "resposta": "Recurso não encontrado"
+    },
+    {
+      "contexto": "Arquitetura de aplicações.",
+      "pergunta": "O que significa REST em APIs RESTful?",
+      "alternativas": ["Remote Execution System Transfer", "Representational State Transfer", "Request State Transition", "Real-time Server Transfer"],
+      "resposta": "Representational State Transfer"
+    },
+    {
+      "contexto": "Autenticação.",
+      "pergunta": "Qual é o padrão mais comum para autenticação de APIs?",
+      "alternativas": ["OAuth", "JWT", "Basic Auth", "Todos os anteriores"],
+      "resposta": "Todos os anteriores"
+    },
+    {
+      "contexto": "Node.js",
+      "pergunta": "Qual comando executa uma aplicação Node.js?",
+      "alternativas": ["node app.js", "npm install", "node_modules", "nodemon"],
+      "resposta": "node app.js"
+    }
+  ],
+  "banco de dados": [
+    {
+      "contexto": "Modelagem de dados.",
+      "pergunta": "O que é uma chave primária?",
+      "alternativas": ["Campo opcional", "Campo único que identifica registros", "Campo duplicado", "Campo de senha"],
+      "resposta": "Campo único que identifica registros"
+    },
+    {
+      "contexto": "SQL básico.",
+      "pergunta": "Qual comando é usado para selecionar dados em SQL?",
+      "alternativas": ["GET", "PICK", "SELECT", "FETCH"],
+      "resposta": "SELECT"
+    },
+    {
+      "contexto": "Relacionamentos.",
+      "pergunta": "O que define uma relação 1:N entre tabelas?",
+      "alternativas": ["Uma tabela aponta para si mesma", "Uma linha em uma tabela pode estar ligada a várias em outra", "Relacionamento circular", "Relação de herança"],
+      "resposta": "Uma linha em uma tabela pode estar ligada a várias em outra"
+    },
+    {
+      "contexto": "Joins.",
+      "pergunta": "Qual tipo de JOIN retorna apenas registros que têm correspondência nas duas tabelas?",
+      "alternativas": ["LEFT JOIN", "RIGHT JOIN", "INNER JOIN", "FULL JOIN"],
+      "resposta": "INNER JOIN"
+    },
+    {
+      "contexto": "Comando DML.",
+      "pergunta": "Qual comando insere dados em uma tabela?",
+      "alternativas": ["INSERT", "SELECT", "UPDATE", "DELETE"],
+      "resposta": "INSERT"
+    }
+  ],
+  "frontend": [
+    {
+      "contexto": "HTML básico.",
+      "pergunta": "Qual tag representa um link?",
+      "alternativas": ["<a>", "<link>", "<url>", "<href>"],
+      "resposta": "<a>"
+    },
+    {
+      "contexto": "CSS.",
+      "pergunta": "Como aplicar uma cor de fundo em CSS?",
+      "alternativas": ["background-color", "bgcolor", "color-bg", "fill-color"],
+      "resposta": "background-color"
+    },
+    {
+      "contexto": "JavaScript.",
+      "pergunta": "Qual comando exibe uma mensagem no console?",
+      "alternativas": ["alert()", "console.show()", "console.log()", "message()"],
+      "resposta": "console.log()"
+    },
+    {
+      "contexto": "DOM.",
+      "pergunta": "Como acessar um elemento pelo ID no JavaScript?",
+      "alternativas": ["getElementById()", "querySelector()", "getById()", "selectId()"],
+      "resposta": "getElementById()"
+    },
+    {
+      "contexto": "Eventos.",
+      "pergunta": "Qual evento é disparado ao clicar em um botão?",
+      "alternativas": ["onhover", "onload", "onclick", "onsubmit"],
+      "resposta": "onclick"
+    }
+  ]
+}
