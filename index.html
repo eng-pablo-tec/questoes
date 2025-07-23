@@ -2,56 +2,21 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Questões SAEP</title>
+  <title>Quiz SAEP</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f5f5f5;
-    }
-    h1 {
-      color: #333;
-    }
-    select {
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-    .questao {
-      background-color: #fff;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    .capacidade {
-      font-weight: bold;
-      color: #2c3e50;
-    }
-    .contexto {
-      font-style: italic;
-      color: #555;
-      margin-bottom: 10px;
-    }
-    .pergunta {
-      font-weight: bold;
-      margin: 10px 0 5px;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 5px;
-    }
-    .resposta {
-      margin-top: 8px;
-      color: green;
-      font-weight: bold;
-    }
+    body { font-family: Arial; padding: 20px; background-color: #f5f5f5; }
+    h1 { color: #333; }
+    select { font-size: 16px; padding: 8px; margin-bottom: 20px; }
+    .questao { background: #fff; padding: 15px; margin: 10px 0; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .capacidade { font-weight: bold; color: #2c3e50; }
+    .contexto { font-style: italic; margin-bottom: 10px; }
+    .pergunta { font-weight: bold; margin-top: 10px; }
+    .resposta { margin-top: 10px; color: green; }
+    .erro { color: red; font-weight: bold; }
   </style>
 </head>
 <body>
-  <h1>Selecione a Matéria</h1>
+  <h1>Selecione a matéria</h1>
   <select id="materiaSelect">
     <option value="">-- Escolha uma matéria --</option>
   </select>
@@ -62,14 +27,15 @@
     const url = "https://eng-pablo-tec.github.io/questoes/questoes.json";
 
     async function carregarQuestoes() {
+      const select = document.getElementById("materiaSelect");
+      const container = document.getElementById("questoesContainer");
+
       try {
-        const resposta = await fetch(url);
-        const dados = await resposta.json();
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Erro HTTP: " + response.status);
+        const dados = await response.json();
 
-        const select = document.getElementById("materiaSelect");
-        const container = document.getElementById("questoesContainer");
-
-        // Preencher o <select> com as matérias
+        // Preencher o select com as chaves das matérias
         Object.keys(dados).forEach(materia => {
           const option = document.createElement("option");
           option.value = materia;
@@ -77,36 +43,37 @@
           select.appendChild(option);
         });
 
-        // Evento de mudança da matéria
+        // Evento ao mudar a matéria
         select.addEventListener("change", () => {
-          const materia = select.value;
+          const materiaSelecionada = select.value;
           container.innerHTML = "";
 
-          if (!materia) return;
+          if (!materiaSelecionada) return;
 
-          const questoes = dados[materia];
+          const questoes = dados[materiaSelecionada];
+          if (!questoes || questoes.length === 0) {
+            container.innerHTML = `<p class="erro">Nenhuma questão encontrada.</p>`;
+            return;
+          }
 
           questoes.forEach((q, i) => {
             const div = document.createElement("div");
             div.className = "questao";
-
             div.innerHTML = `
-              <div class="capacidade">Capacidade: ${q.capacidade}</div>
-              <div class="contexto">Contexto: ${q.contexto}</div>
+              <div class="contexto"><strong>Contexto:</strong> ${q.contexto}</div>
               <div class="pergunta">Q${i + 1}: ${q.pergunta}</div>
               <ul>
                 ${q.alternativas.map(alt => `<li>${alt}</li>`).join("")}
               </ul>
-              <div class="resposta">Resposta correta: ${q.resposta}</div>
+              <div class="resposta"><strong>Resposta correta:</strong> ${q.resposta}</div>
             `;
-
             container.appendChild(div);
           });
         });
+
       } catch (erro) {
-        document.getElementById("questoesContainer").innerHTML =
-          "<p style='color:red;'>Erro ao carregar as questões.</p>";
-        console.error("Erro ao carregar JSON:", erro);
+        container.innerHTML = `<p class="erro">Erro ao carregar as questões: ${erro.message}</p>`;
+        console.error(erro);
       }
     }
 
